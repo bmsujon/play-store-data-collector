@@ -1,6 +1,6 @@
 # App Analyzer API
 
-This API provides functionality to analyze Android apps and find similar apps for business analysis.
+This API provides functionality to analyze Android and iOS apps and find similar apps for business analysis.
 
 ## Requirements
 
@@ -72,12 +72,58 @@ The response includes detailed information about the target app and similar apps
 curl -X POST "http://localhost:8000/analyze-app" -H "Content-Type: application/json" -d '{"android_app_name": "WhatsApp", "url": "https://play.google.com/store/apps/details?id=com.whatsapp"}'
 ```
 
+### POST /analyze-ios-app
+
+Analyzes an iOS app and finds similar apps using the iTunes Search API and App Store data.
+
+**Request Body:**
+```json
+{
+    "ios_app_name": "string",
+    "url": "string"
+}
+```
+
+Example:
+```json
+{
+    "ios_app_name": "bKash",
+    "url": "https://apps.apple.com/us/app/bkash/id1351183172"
+}
+```
+
+**Response:**
+The response includes detailed information about the target app and similar apps, including:
+- App name
+- App ID
+- Developer information
+- Ratings and reviews
+- Price
+- Description
+- Category
+- URL
+- And more
+
+**Features:**
+- Smart search for similar apps using multiple search terms
+- Category-based filtering (e.g., Finance for payment apps)
+- Relevance scoring based on app descriptions
+- Deduplication of results
+- Comprehensive error handling
+
+**Example curl command for testing:**
+```bash
+curl -X POST "http://localhost:8000/analyze-ios-app" -H "Content-Type: application/json" -d '{"ios_app_name": "bKash", "url": "https://apps.apple.com/us/app/bkash/id1351183172"}'
+```
+
 ## Error Handling
 
 The API returns appropriate HTTP status codes:
 - 200: Success
 - 400: Invalid request (e.g., invalid URL format)
 - 500: Server error
+
+Error responses include detailed messages to help diagnose issues.
 
 ## Future Enhancement Plan
 
