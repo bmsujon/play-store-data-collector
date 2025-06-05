@@ -67,6 +67,11 @@ The response includes detailed information about the target app and similar apps
 - Screenshots
 - And more
 
+**Example curl command for testing:**
+```bash
+curl -X POST "http://localhost:8000/analyze-app" -H "Content-Type: application/json" -d '{"android_app_name": "WhatsApp", "url": "https://play.google.com/store/apps/details?id=com.whatsapp"}'
+```
+
 ## Error Handling
 
 The API returns appropriate HTTP status codes:
